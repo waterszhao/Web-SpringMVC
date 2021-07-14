@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.waters.dao.UserMapper">
+    <insert id="insert" parameterType="User">
+        insert into ssmstudy.users (userName,password,controlLevel,telephone,email)
+        values (#{userName}, #{password},#{controlLevel},#{telephone},#{email});
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete from ssmstudy.users where userID = #{userID};
+    </delete>
+
+    <update id="update" parameterType="User">
+        update ssmstudy.users set userName = #{userName},password = #{password},
+        controlLevel = #{controlLevel},telephone=#{telephone},email=#{email}
+        where userID=#{userID};
+    </update>
+
+    <select id="query" parameterType="int" resultType="User">
+        select * from ssmstudy.users where userID=#{userID};
+    </select>
+
+    <select id="queryAll" resultType="User">
+        select * from ssmstudy.users;
+    </select>
+
+    <select id="queryByName" resultType="User">
+        select * from ssmstudy.users where userName=#{name};
+    </select>
+</mapper>
